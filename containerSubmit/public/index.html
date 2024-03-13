@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Submit Application</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="script.js"></script>
+</head>
+<body>
+    <label for="select">Choose a type:</label>
+    <select name="types" id="select">
+    </select>
+    <br>
+    <label for="joke">Text:</label>
+    <input type="text" id="joke">
+    <br>
+    <label for="punchline">Punchline:</label>
+    <input type="text" id="punchline">
+    <br>
+    <br>
+    <button onclick="submitJoke(select.value, joke.value, punchline.value)">Submit Joke</button>
+</body>
+</html>

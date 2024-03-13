@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Moderate Application</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="script.js"></script>
+</head>
+<body>
+    <label for="moderator">Username:</label>
+    <input type="text" id="moderator">
+    <br>
+    <br>
+    <label for="types"></label>
+    <select id="types"></select>
+    <button onclick="toggleTypeInput()">Add Type</button>
+    <br>
+    <div id="typeInput" style="display: none;">
+      <label for="newType">New Type:</label>
+      <input type="text" id="newType">
+      <br>
+    </div>
+    <label for="text">Text:</label>
+    <input type="text" id="text">
+    <br>
+    <label for="punchline">Punchline:</label>
+    <input type="text" id="punchline">
+    <br>   
+    <br>
+    <button onclick="submitJoke(newType.value, types.value, text.value, punchline.value, moderator.value)">Moderate</button>
+    <button onclick="deleteJoke()">Delete</button>
+</body>
+</html>

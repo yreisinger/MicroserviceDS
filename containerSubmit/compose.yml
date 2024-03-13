@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  app:
+    image: microservicec.azurecr.io/submit
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_QN: SUBMITTED_JOKES
+      JOKE_APP: 10.0.0.8
+    volumes:
+      - backup:/app/backup
+    depends_on: 
+      - rabbitmq
+    ports:
+      - 4200:3200
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    hostname: rabbitmq
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_USER: root
+      RABBITMQ_PASS: root
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - 4201:5672
+      - 4202:15672
+    volumes:
+      - rabbit-vol:/var/lib/rabbitmq
+
+volumes:
+  rabbit-vol:
+    driver: local
+  backup:
